@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Chavi Samajik Sanstha</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+<!-- Navbar -->
+<div id="navbar"></div>
+<div class="volunteer-page">
+    <!-- Hero Section -->
+    <section class="volunteer-hero">
+        <div class="overlay"></div>
+        <div class="hero-text">
+            <h1>Join as a Volunteer</h1>
+            <p>Your time and effort can change lives. Be part of our mission today.</p>
+            <a href="#apply" class="primary-btn">Apply Now</a>
+        </div>
+    </section>
+
+    <!-- Why Volunteer -->
+
+        <section class="why-volunteer">
+            <div class="container">
+                <h2 class="section-title">✨ Why Volunteer with Us?</h2>
+                <p class="section-subtitle">Join hands with Chavi Samajik Sanstha to create education, health, and food opportunities for underprivileged communities.</p>
+
+                <div class="volunteer-cards">
+                    <div class="v-card">
+                        <img src="assets/images/volunteer-education.jpg" alt="Education Support">
+                        <h3>Education Support</h3>
+                        <p>Help children learn, grow, and build a brighter future.</p>
+                    </div>
+                    <div class="v-card">
+                        <img src="assets/images/volunteer-health.jpg" alt="Healthcare Assistance">
+                        <h3>Healthcare Assistance</h3>
+                        <p>Assist in health camps and wellness awareness drives.</p>
+                    </div>
+                    <div class="v-card">
+                        <img src="assets/images/volunteer-food.jpg" alt="Food Distribution">
+                        <h3>Food Distribution</h3>
+                        <p>Support meal distribution programs for needy families.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Application Form -->
+    <section class="volunteer-form-section" id="apply">
+        <h2>Become a Volunteer</h2>
+        <p class="form-subtitle">Fill in your details and we’ll get back to you.</p>
+        <form id="volunteerForm" class="volunteer-form">
+            <div class="form-group">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+                <input type="tel" name="phone" placeholder="Phone Number" required>
+                <input type="text" name="city" placeholder="City" required>
+            </div>
+            <textarea name="message" rows="5" placeholder="Why do you want to volunteer?" required></textarea>
+            <button type="submit" class="volunteer-btn">Submit Application</button>
+        </form>
+
+    </section>
+</div>
+<!-- Footer -->
+<div id="footer"></div>
+
+<script>
+
+    fetch("navbar.html").then(res => res.text()).then(data => document.getElementById("navbar").innerHTML = data);
+    fetch("footer.html").then(res => res.text()).then(data => document.getElementById("footer").innerHTML = data);
+</script>
+<script src="assets/js/script.js"></script>
+</body>
+</html>

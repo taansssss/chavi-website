@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Chavi Samajik Sanstha</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- Navbar -->
+<div id="navbar"></div>
+
+
+<!-- Organization Profile -->
+<section class="section about-section fade-in">
+    <div class="container">
+        <h2 class="section-title">Organization Profile</h2>
+        <div class="about-card">
+            <ul>
+                <li><strong>Name:</strong> CHAVI SAMAJIK SANSTHA</li>
+                <li><strong>Registered Office:</strong> 302/A, Vishwasuman Apartment, Vishnupuri Colony, Bhawarkua, Indore</li>
+                <li><strong>Contact:</strong> +91 8827330635 | chavisamajiksansthanngo@gmail.com</li>
+                <li><strong>Legal Representative:</strong> Mr. Rohit Boyat</li>
+                <li><strong>Registration:</strong> AAGAC9183ME20241 | Society Reg. 03/27/03/14846/11 (16-12-2011)</li>
+                <li><strong>PAN:</strong> AAGAC9183M | <strong>CSR Number:</strong> CSR00079079</li>
+                <li><strong>Account:</strong> PNB Bank, Vishnupuri Branch | A/C 7802000100028961 | IFSC: PUN0780200</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Board Members -->
+<section class="board-section">
+    <div class="container">
+        <h2 class="section-title">Our Board Members</h2>
+        <div class="board-members">
+
+            <!-- Member 1 -->
+            <div class="member-card">
+                <div class="member-img">
+                    <img src="assets/images/member1.png" alt="Board Member 1">
+                </div>
+                <h3>Mr. Rohit Boyat </h3>
+                <p class="designation">President</p>
+                <p class="bio">Dedicated leader working towards education and empowerment.</p>
+            </div>
+
+            <!-- Member 2 -->
+            <div class="member-card">
+                <div class="member-img">
+                    <img src="assets/images/member2.png" alt="Board Member 2">
+                </div>
+                <h3>Mr. Madhvandra Tiwari</h3>
+                <p class="designation">Vice President</p>
+                <p class="bio">Passionate about healthcare accessibility and community service.</p>
+            </div>
+
+            <!-- Member 3 -->
+            <div class="member-card">
+                <div class="member-img">
+                    <img src="assets/images/member3.png" alt="Board Member 3">
+                </div>
+                <h3>Mr. Rupesh Patidar</h3>
+                <p class="designation">Civil Engineer</p>
+                <p class="bio">Focused on transparency and effective financial management.</p>
+            </div>
+
+            <!-- Member 4 -->
+            <div class="member-card">
+                <div class="member-img">
+                    <img src="assets/images/member4.png" alt="Board Member 4">
+                </div>
+                <h3>Mr.Firoz Sheikh </h3>
+                <p class="designation">member</p>
+                <p class="bio">Committed to ensuring smooth operations and communication.</p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<!-- Management Team -->
+<section class="section management-section fade-in">
+    <div class="container">
+        <h2 class="section-title">Management Team</h2>
+        <div class="management-list">
+            <div class="management-item"><strong>Mr. Rohit Boyat</strong> – CEO</div>
+            <div class="management-item"><strong>Dinesh Chouhan</strong> – Project Manager (Rural)</div>
+            <div class="management-item"><strong>Vinay Dagar</strong> – Project Manager (Urban)</div>
+            <div class="management-item"><strong>Priya Sharma</strong> – Accountant</div>
+            <div class="management-item"><strong>Ranjana Pathak</strong> – Supervisor (Rural)</div>
+            <div class="management-item"><strong>Abhishek Boyat</strong> – Supervisor (Urban)</div>
+            <div class="management-item"><strong>Mr. Rupesh Patidar</strong> – Coordinator</div>
+        </div>
+    </div>
+</section>
+
+<!-- News Section -->
+<section class="section news-section fade-in">
+    <div class="container">
+        <h2 class="section-title">Latest News</h2>
+        <div class="news-ticker">
+            <div class="ticker-content">
+                <span>🌍 Clean Water Drive – 3,000+ villagers benefited.</span>
+                <span>🌱 Tree Plantation – 2,500 saplings across Indore.</span>
+                <span>👩‍🏫 Women Empowerment Workshop – 200+ women trained.</span>
+                <span>📚 Skill Development – Free sessions for rural youth.</span>
+                <span>💧 Water Sustainability – Awareness campaigns launched.</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Image Ticker Section -->
+<section class="section image-ticker-section fade-in">
+    <div class="container">
+        <div class="image-ticker">
+            <div class="image-ticker-content">
+                <img src="assets/images/activity1.jpg" alt="Activity 1">
+                <img src="assets/images/activity2.jpg" alt="Activity 2">
+                <img src="assets/images/activity3.jpg" alt="Activity 3">
+                <img src="assets/images/activity4.jpg" alt="Activity 4">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<div id="footer"></div>
+
+<script>
+
+    fetch("navbar.html").then(res => res.text()).then(data => document.getElementById("navbar").innerHTML = data);
+    fetch("footer.html").then(res => res.text()).then(data => document.getElementById("footer").innerHTML = data);
+</script>
+</body>
+</html>

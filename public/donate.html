@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate – Chavi Samajik Sanstha</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+<!-- Navbar -->
+<div id="navbar"></div>
+<div class="donate-page">
+    <!-- Hero -->
+    <section class="donate-hero">
+        <div class="overlay"></div>
+        <div class="hero-text">
+            <h1>Make a Difference Today</h1>
+            <p>Your contribution empowers communities in health, education, and sustainability.</p>
+            <a href="#donation-form" class="btn primary-btn">Donate Now</a>
+        </div>
+    </section>
+
+    <!-- Why Donate -->
+    <section class="why-donate">
+        <h2>Why Your Donation Matters</h2>
+        <div class="donate-cards">
+            <div class="donate-card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Every Rupee Counts</h3>
+                <p>Even the smallest contributions create ripples of change in our communities.</p>
+            </div>
+            <div class="donate-card">
+                <i class="fas fa-bullseye"></i>
+                <h3>100% Transparency</h3>
+                <p>Your donations go directly into projects making measurable impact.</p>
+            </div>
+            <div class="donate-card">
+                <i class="fas fa-seedling"></i>
+                <h3>Build a Sustainable Future</h3>
+                <p>Together, we can create greener, healthier, and empowered communities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Form -->
+    <section class="donation-form-section" id="donation-form">
+        <h2>Support the Cause</h2>
+        <p class="form-subtitle">Fill out the form below to make your contribution.</p>
+        <form id="donationForm" class="donation-form">
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="tel" name="phone" placeholder="Phone Number" required>
+            <input type="number" name="amount" placeholder="Donation Amount (₹)" required>
+            <textarea name="message" placeholder="Message (optional)"></textarea>
+            <button type="submit" class="btn donate-btn">Contribute</button>
+        </form>
+    </section>
+</div>
+
+
+<!-- Footer -->
+<div id="footer"></div>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+    document.getElementById("donationForm").addEventListener("submit", async function(e){
+        e.preventDefault();
+
+        let amount = document.querySelector("input[name='amount']").value;
+        let name = document.querySelector("input[name='name']").value;
+        let email = document.querySelector("input[name='email']").value;
+        let phone = document.querySelector("input[name='phone']").value;
+
+        // ✅ Step 1: Create order on server
+        let orderData = await fetch("/api/create-order", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ amount, name, email, phone })
+        }).then(res => res.json());
+
+        // ✅ Step 2: Open Razorpay checkout
+        var options = {
+            "key": orderData.key,
+            "amount": amount * 100,
+            "currency": "INR",
+            "name": "Chavi Samajik Sanstha",
+            "description": "Donation Payment",
+            "order_id": orderData.orderId,
+            "handler": async function (response){
+                // ✅ Step 3: Verify payment
+                let verify = await fetch("/api/verify-payment", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        orderId: response.razorpay_order_id,
+                        paymentId: response.razorpay_payment_id,
+                        signature: response.razorpay_signature,
+                        name, email, phone, amount
+                    })
+                }).then(res => res.json());
+
+                if(verify.success){
+                    alert("✅ Thank you! Payment Successful.");
+                } else {
+                    alert("❌ Payment verification failed!");
+                }
+            },
+            "prefill": { name, email, contact: phone },
+            "theme": { "color": "#38b593" }
+        };
+
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    });
+</script>
+
+<script src="assets/js/script.js"></script>
+</body>
+</html>
