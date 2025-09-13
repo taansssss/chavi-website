@@ -70,6 +70,32 @@
     fetch("navbar.html").then(res => res.text()).then(data => document.getElementById("navbar").innerHTML = data);
     fetch("footer.html").then(res => res.text()).then(data => document.getElementById("footer").innerHTML = data);
     </script>
+<script>
+    document.querySelector(".contact-form").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const data = Object.fromEntries(new FormData(form).entries());
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
+
+            const result = await res.json();
+            if (result.success) {
+                alert("✅ Message sent successfully!");
+                form.reset();
+            } else {
+                alert("❌ " + (result.error || "Failed to send message"));
+            }
+        } catch (err) {
+            console.error("Error:", err);
+            alert("❌ Something went wrong. Please try again later.");
+        }
+    });
+</script>
 
 </body>
 </html>

@@ -1,4 +1,3 @@
-// assets/js/script.js
 // Shared JS for navbar/footer, donation, counters, tickers, filtering.
 
 document.addEventListener('DOMContentLoaded', () => {

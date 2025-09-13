@@ -94,6 +94,23 @@ app.post("/api/volunteers", async (req, res) => {
     }
 });
 
+// Contact Form
+app.post("/api/contact", async (req, res) => {
+    try {
+        const { name, email, subject, message } = req.body;
+        if (!name || !email || !subject || !message) {
+            return res.status(400).json({ error: "All fields are required" });
+        }
+        await db.collection("contacts").insertOne({
+            name, email, subject, message, createdAt: new Date()
+        });
+        res.status(200).json({ success: true, message: "Message sent successfully" });
+    } catch (err) {
+        console.error("❌ Error saving contact message:", err);
+        res.status(500).json({ error: "Failed to send message" });
+    }
+});
+
 // Donations (record in DB)
 app.post("/api/donations", async (req, res) => {
     try {
@@ -142,6 +159,9 @@ app.post("/api/verify-payment", async (req, res) => {
         res.status(500).json({ error: "Failed to verify payment" });
     }
 });
+
+
+
 
 // --- Start server ---
 connectDB().then(() => {
