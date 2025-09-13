@@ -10,7 +10,8 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
-    "mongodb": "^6.6.0",
+    "mongodb": "^6.19.0",
+    "mongoose": "^8.18.1",
     "razorpay": "^2.9.6"
   }
 }

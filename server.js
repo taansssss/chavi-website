@@ -2,7 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
-const { MongoClient } = require("mongodb");
+const { MongoClient, ServerApiVersion } = require("mongodb");
+
 const Razorpay = require("razorpay");
 const path = require("path");
 
@@ -14,15 +15,30 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "docs")));
 
 const PORT = process.env.PORT || 3000;
-const MONGO_URI = process.env.MONGO_URI;
+
+// 🚀 Clean up the URI before using
+const MONGO_URI = (process.env.MONGO_URI || "")
+      // remove hidden newlines
+
 const DB_NAME = "chavi_website";
 
+const client = new MongoClient(MONGO_URI, {
+    serverApi: {
+        version: ServerApiVersion.v1,
+        strict: true,
+        deprecationErrors: true,
+    },
+});
 let db, razorpay;
 
 // --- MongoDB connection ---
 async function connectDB() {
     try {
-        const client = new MongoClient(MONGO_URI);
+        console.log("🔍 MONGO_URI used:", JSON.stringify(MONGO_URI));
+        const client = new MongoClient(MONGO_URI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
         await client.connect();
         db = client.db(DB_NAME);
         console.log("✅ Connected to MongoDB");
